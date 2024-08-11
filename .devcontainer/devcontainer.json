@@ -1,6 +1,8 @@
 {
   "name": "Streamlit Template from dev container",
-  "image": "ghcr.io/streamlit/basic-template:latest",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "customizations": {
     "codespaces": {
       "openFiles": [
