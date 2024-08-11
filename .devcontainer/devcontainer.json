@@ -1,0 +1,24 @@
+{
+  "name": "Streamlit Template from dev container",
+  "image": "ghcr.io/streamlit/basic-template:latest",
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "README.md",
+        "momra_butler_updated.py"
+      ]
+    }
+  },
+  "postAttachCommand": {
+    "server": "streamlit run momra_butler_updated.py --server.enableCORS false --server.enableXsrfProtection false"
+  },
+  "portsAttributes": {
+    "8501": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [
+    8501
+  ]
+}
