@@ -5,12 +5,12 @@
     "codespaces": {
       "openFiles": [
         "README.md",
-        "momra_butler_updated.py"
+        "Document_Querying_Streamlit.py"
       ]
     }
   },
   "postAttachCommand": {
-    "server": "streamlit run momra_butler_updated.py --server.enableCORS false --server.enableXsrfProtection false"
+    "server": "streamlit run Document_Querying_Streamlit.py --server.enableCORS false --server.enableXsrfProtection false"
   },
   "portsAttributes": {
     "8501": {
