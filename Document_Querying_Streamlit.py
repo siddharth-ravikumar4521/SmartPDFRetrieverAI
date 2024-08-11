@@ -26,19 +26,32 @@ import joblib
 import os
 import nest_asyncio  # noqa: E402
 nest_asyncio.apply()
+from cryptography.fernet import Fernet
 
 
-open_ai_api="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"
+
 llama_cloud_api="llx-PUHGYTgvb26eAsGtyRevZmk6iYNt0Qs49XuNrgVdSwhW1scL"
 cohere_api="2dChAVyhW2jYng7tWYGuh5ol0xiKqDTVKtBT4A2W"
 from langchain.chat_models import ChatOpenAI
+
+Secret_Key_openai="X1A22EgQilQO_-w4jOTflmpG8o8BXMtZYTcsJa3yoY8="
+Encrypted_openai:"gAAAAABmuJ6MrTyGsbVCg_Y7zkuH5VAG75QTPfW7lzNPaR8XpoJEEVhgwO35THTQ9HYpSTzVI0eWBybfg5yqKiPVKx_1I1TmGGo28ztJycn5cih8HU7OAOyl1yRHd4dSZK1AT79l6t5B531-xYoi2j8wWy83MCO6nNqofe0hZkcoTVaBpmt7mZy-7NuURk1-5bMkEKbvoUESFqI3MYkj_WEH73AXHN2c3S3sDBzak2HaAlsEcUN5U59SmSAsFXD5v_lfqK79iXS4"
+
+def demask_api_key(encrypted_key, key):
+    fernet = Fernet(key)
+    decrypted_key = fernet.decrypt(encrypted_key).decode()
+    return decrypted_key
+
+demasked_key = demask_api_key(Encrypted_openai, Secret_Key_openai)
+
+print(demasked_key)
 
 import os
 # API access to llama-cloud
 os.environ["LLAMA_CLOUD_API_KEY"] = llama_cloud_api
 
 # Using OpenAI API for embeddings/llms
-os.environ["OPENAI_API_KEY"] = open_ai_api
+os.environ["OPENAI_API_KEY"] = demasked_key
 
 # Using Cohere for reranking
 os.environ["COHERE_API_KEY"] = cohere_api
