@@ -7,12 +7,12 @@
     "codespaces": {
       "openFiles": [
         "README.md",
-        "Document_Querying_Streamlit.py"
+        "Document_QA_Updated.py"
       ]
     }
   },
   "postAttachCommand": {
-    "server": "streamlit run Document_Querying_Streamlit.py --server.enableCORS false --server.enableXsrfProtection false"
+    "server": "streamlit run Document_QA_Updated.py --server.enableCORS false --server.enableXsrfProtection false"
   },
   "portsAttributes": {
     "8501": {
