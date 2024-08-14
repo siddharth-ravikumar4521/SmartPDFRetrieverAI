@@ -53,9 +53,17 @@ from langchain.schema import Document
 import json
 import math
 
+Secret_Key_openai="1EapbgJS7W8jPQjNEWkFbOKg9DOq0koS2TaRnUNkoTk="
+Encrypted_openai="gAAAAABmu2X_UzAX1-ZfJLRl__U73qWwov2l2fWka-ux3dcZ-a8LbVhi2Yg1mTOh4NPMtGRiKssw4aEElPm3gEGFDPfPMoJQf4MqflEAgTlsrI4q26d2FxCWc-Sb0AwUeEhOX_8JbDqAx5IrB-UDCuxLVfQuEFDycfWcr8QRLcOpaNWy3XmvbZzC0dvXYLhXkWTEt9KAewhL2MktzyPXyDqUItnqOdI2rO3DYLI02z7y9NnHe0I_09ep5RbxEajZu9Q_HkyosZzS"
 
-#open_ai_api="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"
-open_ai_api="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"
+def demask_api_key(encrypted_key, key):
+    fernet = Fernet(key)
+    decrypted_key = fernet.decrypt(encrypted_key).decode()
+    return decrypted_key
+
+demasked_key = demask_api_key(Encrypted_openai, Secret_Key_openai)
+
+
 llama_cloud_api="llx-PUHGYTgvb26eAsGtyRevZmk6iYNt0Qs49XuNrgVdSwhW1scL"
 cohere_api="2dChAVyhW2jYng7tWYGuh5ol0xiKqDTVKtBT4A2W"
 from langchain.chat_models import ChatOpenAI
@@ -67,7 +75,7 @@ import os
 os.environ["LLAMA_CLOUD_API_KEY"] = llama_cloud_api
 
 # Using OpenAI API for embeddings/llms
-os.environ["OPENAI_API_KEY"] = open_ai_api
+os.environ["OPENAI_API_KEY"] = demasked_key
 
 # Using Cohere for reranking
 os.environ["COHERE_API_KEY"] = cohere_api
